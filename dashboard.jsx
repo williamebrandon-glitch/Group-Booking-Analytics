@@ -1,3 +1,26 @@
+const { useState, useCallback, useMemo } = React;
+const { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ComposedChart } = Recharts;
+
+// Simple SVG icon components (replacing lucide-react imports)
+const IconSvg = ({d, size=20}) => React.createElement('svg', {width:size, height:size, viewBox:'0 0 24 24', fill:'none', stroke:'currentColor', strokeWidth:2, strokeLinecap:'round', strokeLinejoin:'round'}, React.createElement('path', {d}));
+const Upload = ({size=20}) => IconSvg({d:'M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12', size});
+const TrendingUp = ({size=20}) => IconSvg({d:'M23 6l-9.5 9.5-5-5L1 18', size});
+const TrendingDown = ({size=20}) => IconSvg({d:'M23 18l-9.5-9.5-5 5L1 6', size});
+const Calendar = ({size=20}) => IconSvg({d:'M19 4H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zM16 2v4M8 2v4M3 10h18', size});
+const Users = ({size=20}) => IconSvg({d:'M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75M9 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8z', size});
+const DollarSign = ({size=20}) => IconSvg({d:'M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6', size});
+const Clock = ({size=20}) => IconSvg({d:'M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zM12 6v6l4 2', size});
+const Building2 = ({size=20}) => IconSvg({d:'M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18zM6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2', size});
+const Target = ({size=20}) => IconSvg({d:'M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zM12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12zM12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4z', size});
+const RefreshCw = ({size=20}) => IconSvg({d:'M23 4v6h-6M1 20v-6h6M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15', size});
+const AlertCircle = ({size=20}) => IconSvg({d:'M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zM12 8v4M12 16h.01', size});
+const X = ({size=20}) => IconSvg({d:'M18 6L6 18M6 6l12 12', size});
+const BarChart3 = ({size=20}) => IconSvg({d:'M18 20V10M12 20V4M6 20v-6', size});
+const ChevronLeft = ({size=20}) => IconSvg({d:'M15 18l-6-6 6-6', size});
+const ChevronRight = ({size=20}) => IconSvg({d:'M9 18l6-6-6-6', size});
+const User = ({size=20}) => IconSvg({d:'M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8z', size});
+const Eye = ({size=20}) => IconSvg({d:'M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z', size});
+const EyeOff = ({size=20}) => IconSvg({d:'M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19M1 1l22 22', size});
 
 
 const COLORS = {
