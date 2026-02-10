@@ -852,7 +852,7 @@ return (
 );
 };
 
-export default function GroupBookingDashboard() {
+
 const [rawData, setRawData] = useState(null);
 const [isLoading, setIsLoading] = useState(false);
 const [error, setError] = useState(null);
