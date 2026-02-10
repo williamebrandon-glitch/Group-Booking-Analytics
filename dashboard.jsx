@@ -1,7 +1,4 @@
-import React, { useState, useCallback, useMemo } from ‘react’;
-import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ComposedChart } from ‘recharts’;
-import { Upload, TrendingUp, TrendingDown, Calendar, Users, DollarSign, Clock, Building2, Target, RefreshCw, AlertCircle, X, BarChart3, ChevronLeft, User, ChevronRight, Eye, EyeOff } from ‘lucide-react’;
-import Papa from ‘papaparse’;
+
 
 const COLORS = {
 primary: ‘#0066FF’,
